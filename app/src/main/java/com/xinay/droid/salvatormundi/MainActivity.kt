@@ -17,9 +17,5 @@ class MainActivity : AppCompatActivity() {
         val textView = findViewById<TextView>(R.id.main_text_view)
         textView.setText("Salvator Mundi")
         textView.setTextColor(Color.YELLOW)
-
-        val bitmap = BitmapFactory.decodeResource(resources, R.mipmap.)
-        val imageView = findViewById<ImageView>(R.id.salvator_mundi_image_view)
-        imageView.setImageBitmap(bitmap)
     }
 }
