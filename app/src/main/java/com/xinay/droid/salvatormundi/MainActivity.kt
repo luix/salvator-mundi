@@ -1,5 +1,6 @@
 package com.xinay.droid.salvatormundi
 
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,9 +18,8 @@ class MainActivity : AppCompatActivity() {
         textView.setText("Salvator Mundi")
         textView.setTextColor(Color.YELLOW)
 
+        val bitmap = BitmapFactory.decodeResource(resources, R.mipmap.)
         val imageView = findViewById<ImageView>(R.id.salvator_mundi_image_view)
-        imageView.setImageDrawable(ContextCompat.getDrawable(
-            applicationContext,
-            R.drawable.))
+        imageView.setImageBitmap(bitmap)
     }
 }
