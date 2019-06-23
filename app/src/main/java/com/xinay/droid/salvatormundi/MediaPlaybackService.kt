@@ -59,6 +59,31 @@ class MediaPlaybackService : MediaBrowserServiceCompat() {
             MediaBrowserServiceCompat.BrowserRoot(MY_EMPTY_MEDIA_ROOT_ID, null)
         }
     }
+
+    override fun onLoadChildren(
+        parentMediaId: String,
+        result: MediaBrowserServiceCompat.Result<List<MediaBrowserCompat.MediaItem>>
+    ) {
+        //  Browsing not allowed
+        if (MY_EMPTY_MEDIA_ROOT_ID == parentMediaId) {
+            result.sendResult(null)
+            return
+        }
+
+        // Assume for example that the music catalog is already loaded/cached.
+
+        val mediaItems = emptyList<MediaBrowserCompat.MediaItem>()
+
+        // Check if this is the root menu:
+        if (MY_MEDIA_ROOT_ID == parentMediaId) {
+            // Build the MediaItem objects for the top level,
+            // and put them in the mediaItems list...
+        } else {
+            // Examine the passed parentMediaId to see which submenu we're at,
+            // and put the children of that menu in the mediaItems list...
+        }
+        result.sendResult(mediaItems)
+    }
 }
 
 
