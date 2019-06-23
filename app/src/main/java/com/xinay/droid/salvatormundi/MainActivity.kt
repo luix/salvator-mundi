@@ -32,4 +32,8 @@ class MainActivity : AppCompatActivity() {
             textView.startAnimation(jump)
         }
     }
+
+
+
+
 }
