@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.session.MediaControllerCompat
+import android.support.v4.media.session.PlaybackStateCompat
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -61,6 +62,30 @@ class MainActivity : AppCompatActivity() {
         mediaBrowser.disconnect()
     }
 
+    fun buildTransportControls() {
+        val mediaController = MediaControllerCompat.getMediaController(this@MainActivity)
+        // Grab the view for the play/pause button
+        playPause = findViewById<ImageView>(R.id.play_pause).apply {
+            setOnClickListener {
+                // Since this is a play/pause button, you'll need to test the current state
+                // and choose the action accordingly
+
+                val pbState = mediaController.playbackState.state
+                if (pbState == PlaybackStateCompat.STATE_PLAYING) {
+                    mediaController.transportControls.pause()
+                } else {
+                    mediaController.transportControls.play()
+                }
+            }
+        }
+
+        // Display the initial state
+        val metadata = mediaController.metadata
+        val pbState = mediaController.playbackState
+
+        // Register a Callback to stay in sync
+        mediaController.registerCallback(controllerCallback)
+    }
 
     private val connectionCallbacks = object : MediaBrowserCompat.ConnectionCallback() {
         override fun onConnected() {
