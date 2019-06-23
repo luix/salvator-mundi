@@ -8,6 +8,7 @@ import android.media.AudioManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.media.MediaBrowserCompat
+import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaControllerCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import android.util.AttributeSet
@@ -114,5 +115,12 @@ class MainActivity : AppCompatActivity() {
         override fun onConnectionFailed() {
             // The Service has refused our connection
         }
+    }
+
+    private var controllerCallback = object : MediaControllerCompat.Callback() {
+
+        override fun onMetadataChanged(metadata: MediaMetadataCompat?) {}
+
+        override fun onPlaybackStateChanged(state: PlaybackStateCompat?) {}
     }
 }
