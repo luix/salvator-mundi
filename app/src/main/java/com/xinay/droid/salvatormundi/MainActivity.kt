@@ -60,4 +60,34 @@ class MainActivity : AppCompatActivity() {
         MediaControllerCompat.getMediaController(this)?.unregisterCallback(controllerCallback)
         mediaBrowser.disconnect()
     }
+
+
+    private val connectionCallbacks = object : MediaBrowserCompat.ConnectionCallback() {
+        override fun onConnected() {
+
+            // Get the token for the MediaSession
+            mediaBrowser.sessionToken.also { token ->
+
+                // Create a MediaControllerCompat
+                val mediaController = MediaControllerCompat(
+                    this@MainActivity, // Context
+                    token
+                )
+
+                // Save the controller
+                MediaControllerCompat.setMediaController(this@MainActivity, mediaController)
+            }
+
+            // Finish building the UI
+            buildTransportControls()
+        }
+
+        override fun onConnectionSuspended() {
+            // The Service has crashed. Disable transport controls until it automatically reconnects
+        }
+
+        override fun onConnectionFailed() {
+            // The Service has refused our connection
+        }
+    }
 }
