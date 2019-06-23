@@ -1,5 +1,6 @@
 package com.xinay.droid.salvatormundi;
 
+import android.os.Bundle
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import androidx.media.MediaBrowserServiceCompat
@@ -37,6 +38,25 @@ class MediaPlaybackService : MediaBrowserServiceCompat() {
 
             // Set the session's token so that client activities can communicate with it.
             setSessionToken(sessionToken)
+        }
+    }
+
+    override fun onGetRoot(
+        clientPackageName: String,
+        clientUid: Int,
+        rootHints: Bundle?
+    ): MediaBrowserServiceCompat.BrowserRoot {
+
+        // (Optional) Control the level of access for the specified package name.
+        // You'll need to write your own logic to do this.
+        return if (allowBrowsing(clientPackageName, clientUid)) {
+            // Returns a root ID that clients can use with onLoadChildren() to retrieve
+            // the content hierarchy.
+            MediaBrowserServiceCompat.BrowserRoot(MY_MEDIA_ROOT_ID, null)
+        } else {
+            // Clients can connect, but this BrowserRoot is an empty hierachy
+            // so onLoadChildren returns nothing. This disables the ability to browse for content.
+            MediaBrowserServiceCompat.BrowserRoot(MY_EMPTY_MEDIA_ROOT_ID, null)
         }
     }
 }
