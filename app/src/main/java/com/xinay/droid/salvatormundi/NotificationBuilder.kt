@@ -1,6 +1,7 @@
 package com.xinay.droid.salvatormundi
 
 import android.app.Notification
+import android.content.Context
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import androidx.core.app.NotificationCompat
@@ -8,7 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.TypedArrayUtils.getString
 import androidx.media.session.MediaButtonReceiver
 
-class NotificationBuilder {
+class NotificationBuilder(private val context: Context) {
 
 
     fun buildNotification(mediaSession: MediaSessionCompat): Notification {

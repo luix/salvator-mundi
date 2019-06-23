@@ -11,7 +11,7 @@ import android.media.AudioManager.ACTION_AUDIO_BECOMING_NOISY
 import android.service.media.MediaBrowserService
 import android.support.v4.media.session.MediaSessionCompat
 
-class MySessionCallback: MediaSessionCompat.Callback() {
+class MySessionCallback(private val context: Context): MediaSessionCompat.Callback() {
 
     private val intentFilter = IntentFilter(ACTION_AUDIO_BECOMING_NOISY)
 
