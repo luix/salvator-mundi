@@ -1,5 +1,6 @@
 package com.xinay.droid.salvatormundi
 
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -10,7 +11,7 @@ import android.media.AudioManager.ACTION_AUDIO_BECOMING_NOISY
 import android.service.media.MediaBrowserService
 import android.support.v4.media.session.MediaSessionCompat
 
-class MediaSessionCallbackHelper {
+class MySessionCallback: MediaSessionCompat.Callback() {
 
     private val intentFilter = IntentFilter(ACTION_AUDIO_BECOMING_NOISY)
 
@@ -77,5 +78,14 @@ class MediaSessionCallbackHelper {
         unregisterReceiver(myNoisyAudioStreamReceiver)
         // Take the service out of the foreground, retain the notification
         service.stopForeground(false)
+    }
+
+    private class BecomingNoisyReceiver : BroadcastReceiver() {
+
+        override fun onReceive(context: Context, intent: Intent) {
+            if (intent.action == AudioManager.ACTION_AUDIO_BECOMING_NOISY) {
+                // Pause the playback
+            }
+        }
     }
 }
