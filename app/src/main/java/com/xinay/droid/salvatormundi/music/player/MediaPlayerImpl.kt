@@ -89,5 +89,24 @@ class MediaPlayerImpl : MediaPlayer {
         mediaSession.isActive = true
     }
 
-    
+    private inner class SessionCallback : MediaSessionCompat.Callback() {
+
+        private val SEEK_WINDOW_MILLIS = 10000
+
+        override fun onPlay() {
+            exoPlayer.playWhenReady = true
+        }
+
+        override fun onPause() {
+            exoPlayer.playWhenReady = false
+        }
+
+        override fun onRewind() {
+            exoPlayer.seekTo(exoPlayer.currentPosition - SEEK_WINDOW_MILLIS)
+        }
+
+        override fun onFastForward() {
+            exoPlayer.seekTo(exoPlayer.currentPosition + SEEK_WINDOW_MILLIS)
+        }
+    }
 }
