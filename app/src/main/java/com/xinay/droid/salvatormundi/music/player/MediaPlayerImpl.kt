@@ -64,4 +64,30 @@ class MediaPlayerImpl : MediaPlayer {
 
         exoPlayer = ExoPlayerFactory.newSimpleInstance(renderersFactory, trackSelector, loadControl)
     }
+
+    private fun initializeMediaSession() {
+        mediaSession = MediaSessionCompat(context, TAG)
+        mediaSession.setFlags(
+            MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS or
+                MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS
+        )
+        mediaSession.setMediaButtonReceiver(null)
+
+        stateBuilder = PlaybackStateCompat.Builder()
+            .setActions(
+                PlaybackStateCompat.ACTION_PLAY or
+                    PlaybackStateCompat.ACTION_PAUSE or
+                    PlaybackStateCompat.ACTION_PLAY_PAUSE or
+                    PlaybackStateCompat.ACTION_FAST_FORWARD or
+                    PlaybackStateCompat.ACTION_REWIND
+            )
+
+        mediaSession.setPlaybackState(stateBuilder.build())
+
+        mediaSession.setCallback(SessionCallback())
+
+        mediaSession.isActive = true
+    }
+
+    
 }
