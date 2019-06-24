@@ -4,9 +4,13 @@ import android.content.Context
 import android.net.Uri
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
+import com.google.android.exoplayer2.DefaultLoadControl
+import com.google.android.exoplayer2.DefaultRenderersFactory
 import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
 import com.google.android.exoplayer2.source.ExtractorMediaSource
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.xinay.droid.salvatormundi.R
@@ -49,6 +53,6 @@ class MediaPlayerImpl : MediaPlayer {
     }
 
     override fun setMediaSessionState(isActive: Boolean) {
-        TODO("not implemented")
+        mediaSession.isActive = isActive
     }
 }
