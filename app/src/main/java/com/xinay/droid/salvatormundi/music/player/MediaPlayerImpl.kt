@@ -44,7 +44,8 @@ class MediaPlayerImpl : MediaPlayer {
     }
 
     override fun releasePlayer() {
-        TODO("not implemented")
+        exoPlayer.stop()
+        exoPlayer.release()
     }
 
     override fun setMediaSessionState(isActive: Boolean) {
