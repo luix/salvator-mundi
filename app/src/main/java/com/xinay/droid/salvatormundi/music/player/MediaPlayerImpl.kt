@@ -55,4 +55,13 @@ class MediaPlayerImpl : MediaPlayer {
     override fun setMediaSessionState(isActive: Boolean) {
         mediaSession.isActive = isActive
     }
+
+    private fun initializePlayer() {
+
+        val trackSelector = DefaultTrackSelector()
+        val loadControl = DefaultLoadControl()
+        val renderersFactory = DefaultRenderersFactory(context)
+
+        exoPlayer = ExoPlayerFactory.newSimpleInstance(renderersFactory, trackSelector, loadControl)
+    }
 }
