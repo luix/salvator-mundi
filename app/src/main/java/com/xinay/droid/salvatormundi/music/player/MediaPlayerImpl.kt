@@ -37,7 +37,10 @@ class MediaPlayerImpl : MediaPlayer {
     }
 
     override fun getPlayerImpl(context: Context): ExoPlayer {
-        TODO("not implemented")
+        this.context = context
+        initializePlayer()
+        initializeMediaSession()
+        return exoPlayer
     }
 
     override fun releasePlayer() {
