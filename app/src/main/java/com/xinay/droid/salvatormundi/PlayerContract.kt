@@ -13,7 +13,7 @@ interface PlayerContract {
 
     interface View {
 
-        fun renderVideos(videos: List<ApiVideo>)
+        //fun renderVideos(videos: List<ApiVideo>)
 
         fun showErrorMessage()
     }
