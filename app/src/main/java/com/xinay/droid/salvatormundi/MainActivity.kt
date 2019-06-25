@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
     fun buildTransportControls() {
         val mediaController = MediaControllerCompat.getMediaController(this@MainActivity)
         // Grab the view for the play/pause button
-        playPause = findViewById<ImageView>(R.id.play_pause).apply {
+        val playPause = findViewById<ImageView>(R.id.play_pause).apply {
             setOnClickListener {
                 // Since this is a play/pause button, you'll need to test the current state
                 // and choose the action accordingly
