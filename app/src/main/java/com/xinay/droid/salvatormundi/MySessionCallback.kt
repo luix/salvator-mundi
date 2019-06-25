@@ -26,6 +26,8 @@ class MySessionCallback(private val context: Context): MediaSessionCompat.Callba
 
     private lateinit var audioFocusRequest: AudioFocusRequest
 
+    private val id = 671523
+
     private val callback = object: MediaSessionCompat.Callback() {
         override fun onPlay() {
             val am = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
@@ -42,13 +44,13 @@ class MySessionCallback(private val context: Context): MediaSessionCompat.Callba
             val result = am.requestAudioFocus(audioFocusRequest)
             if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                 // Start the service
-                startService(Intent(context, MediaBrowserService::class.java))
+                context.startService(Intent(context, MediaBrowserService::class.java))
                 // Set the session active  (and update metadata and state)
                 mediaSession.isActive = true
                 // start the player (custom call)
                 player.start()
                 // Register BECOME_NOISY BroadcastReceiver
-                registerReceiver(myNoisyAudioStreamReceiver, intentFilter)
+                context.registerReceiver(myNoisyAudioStreamReceiver, intentFilter)
                 // Put the service in the foreground, post notification
                 service.startForeground(id, myPlayerNotification)
             }
@@ -59,7 +61,7 @@ class MySessionCallback(private val context: Context): MediaSessionCompat.Callba
         val am = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         // Abandon audio focus
         am.abandonAudioFocusRequest(audioFocusRequest)
-        unregisterReceiver(myNoisyAudioStreamReceiver)
+        context.unregisterReceiver(myNoisyAudioStreamReceiver)
         // Stop the service
         service.stopSelf()
         // Set the session inactive  (and update metadata and state)
@@ -76,7 +78,7 @@ class MySessionCallback(private val context: Context): MediaSessionCompat.Callba
         // pause the player (custom call)
         player.pause()
         // unregister BECOME_NOISY BroadcastReceiver
-        unregisterReceiver(myNoisyAudioStreamReceiver)
+        context.unregisterReceiver(myNoisyAudioStreamReceiver)
         // Take the service out of the foreground, retain the notification
         service.stopForeground(false)
     }
