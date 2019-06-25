@@ -11,10 +11,12 @@ import androidx.media.session.MediaButtonReceiver
 
 class NotificationBuilder(private val context: Context) {
 
+    private val channelId = "SomeChannelId"
+
 
     fun buildNotification(mediaSession: MediaSessionCompat): Notification {
         // Given a media session and its context (usually the component containing the session)
-// Create a NotificationCompat.Builder
+        // Create a NotificationCompat.Builder
 
         // Get the session's metadata
         val controller = mediaSession.controller
@@ -76,7 +78,14 @@ class NotificationBuilder(private val context: Context) {
             )
         }
 
+        // fake id
+        val id = 1234
+
         // Display the notification and place the service in the foreground
         startForeground(id, builder.build())
+    }
+
+    fun startForeground(id: Int, builder: Notification) {
+        TODO("Implement this")
     }
 }
