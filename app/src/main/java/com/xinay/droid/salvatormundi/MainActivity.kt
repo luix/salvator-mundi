@@ -1,8 +1,6 @@
 package com.xinay.droid.salvatormundi
 
 import android.content.ComponentName
-import android.content.Context
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.media.AudioManager
 import androidx.appcompat.app.AppCompatActivity
@@ -11,12 +9,9 @@ import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaControllerCompat
 import android.support.v4.media.session.PlaybackStateCompat
-import android.util.AttributeSet
-import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
