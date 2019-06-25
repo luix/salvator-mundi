@@ -9,6 +9,8 @@ import androidx.media.MediaBrowserServiceCompat
 private const val MY_MEDIA_ROOT_ID = "media_root_id"
 private const val MY_EMPTY_MEDIA_ROOT_ID = "empty_root_id"
 
+private const val LOG_TAG = "MediaPlaybackService"
+
 class MediaPlaybackService : MediaBrowserServiceCompat() {
 
     private var mediaSession: MediaSessionCompat? = null
@@ -35,7 +37,7 @@ class MediaPlaybackService : MediaBrowserServiceCompat() {
             setPlaybackState(stateBuilder.build())
 
             // MySessionCallback() has methods that handle callbacks from a media controller
-            setCallback(MySessionCallback())
+            setCallback(MySessionCallback(baseContext))
 
             // Set the session's token so that client activities can communicate with it.
             setSessionToken(sessionToken)
@@ -59,6 +61,11 @@ class MediaPlaybackService : MediaBrowserServiceCompat() {
             // so onLoadChildren returns nothing. This disables the ability to browse for content.
             MediaBrowserServiceCompat.BrowserRoot(MY_EMPTY_MEDIA_ROOT_ID, null)
         }
+    }
+
+    private fun allowBrowsing(clientPackageName: String, clientUid: Int) : Boolean {
+        // ToDo: need to implement this method
+        return false
     }
 
     override fun onLoadChildren(
