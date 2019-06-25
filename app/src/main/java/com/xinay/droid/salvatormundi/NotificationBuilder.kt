@@ -14,7 +14,7 @@ class NotificationBuilder(private val context: Context) {
     private val channelId = "SomeChannelId"
 
 
-    fun buildNotification(mediaSession: MediaSessionCompat): Notification {
+    fun buildNotification(mediaSession: MediaSessionCompat) {
         // Given a media session and its context (usually the component containing the session)
         // Create a NotificationCompat.Builder
 
@@ -47,13 +47,13 @@ class NotificationBuilder(private val context: Context) {
             // Add an app icon and set its accent color
             // Be careful about the color
             setSmallIcon(R.drawable.notification_icon)
-            color = ContextCompat.getColor(context, R.color.primaryDark)
+            color = ContextCompat.getColor(context, R.color.primary_material_dark)
 
             // Add a pause button
             addAction(
                 NotificationCompat.Action(
-                    R.drawable.pause,
-                    getString(R.string.pause),
+                    R.drawable.exo_controls_pause,
+                    "SomeNotificationTitle", // getString(R.string.pause),
                     MediaButtonReceiver.buildMediaButtonPendingIntent(
                         context,
                         PlaybackStateCompat.ACTION_PLAY_PAUSE
@@ -63,7 +63,8 @@ class NotificationBuilder(private val context: Context) {
 
             // Take advantage of MediaStyle features
             setStyle(
-                android.support.v4.media.app.NotificationCompat.MediaStyle()
+                androidx.media.app.NotificationCompat.MediaStyle()
+                //android.support.v4.media.app.NotificationCompat.MediaStyle()
                     .setMediaSession(mediaSession.sessionToken)
                     .setShowActionsInCompactView(0)
 
