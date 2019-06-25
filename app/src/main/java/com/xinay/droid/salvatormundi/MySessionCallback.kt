@@ -1,5 +1,6 @@
 package com.xinay.droid.salvatormundi
 
+import android.app.Notification
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -86,6 +87,23 @@ class MySessionCallback(private val context: Context): MediaSessionCompat.Callba
             if (intent.action == AudioManager.ACTION_AUDIO_BECOMING_NOISY) {
                 // Pause the playback
             }
+        }
+    }
+
+    private class MediaStyleNotification : Notification()
+
+    private class SomeKindOfPlayer {
+
+        fun start() {
+            TODO("Implement this")
+        }
+
+        fun pause() {
+            TODO("Implement this")
+        }
+
+        fun stop() {
+            TODO("To do")
         }
     }
 }
