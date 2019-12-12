@@ -6,4 +6,7 @@ The painting depicts Jesus in Renaissance dress, making the sign of the cross wi
 
 My intention is to create an app that would show this famous painting in a 3D rendering.
 
-- 9/Dic/2019 -
+
+-  9/Dic/2019 -
+- 11/Dic/2019 -
+
