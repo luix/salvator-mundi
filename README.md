@@ -9,4 +9,5 @@ My intention is to create an app that would show this famous painting in a 3D re
 
 -  9/Dic/2019 -
 - 11/Dic/2019 -
+Mi Sol 🙏
 
